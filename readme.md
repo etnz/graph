@@ -1,4 +1,4 @@
-[![Travis](https://travis-ci.org/etnz/graph.svg?branch=master)](https://travis-ci.org/etnz/graph.svg?branch=master)
+[![Travis](https://travis-ci.org/etnz/graph.svg?branch=master)](https://travis-ci.org/etnz/graph)
 [![GoDoc](https://godoc.org/github.com/etnz/graph?status.svg)](https://godoc.org/github.com/etnz/graph)
 
 # graph
