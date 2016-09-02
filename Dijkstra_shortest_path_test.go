@@ -7,7 +7,7 @@ import (
 
 func TestDijkstraShortestPathTree(t *testing.T) {
 	// according to wikipedia:
-	graph := map[string]map[string]interface{}{
+	graph := map[string]map[string]float64{
 		"1": {"2": 7.0, "3": 9.0, "6": 14.0},
 		"2": {"3": 10.0, "4": 15.0},
 		"3": {"4": 11.0, "6": 2.0},
@@ -16,7 +16,17 @@ func TestDijkstraShortestPathTree(t *testing.T) {
 		"6": {"5": 9.0},
 	}
 	// trick we are using the graph edge value to store a float: the wieght
-	dists, preds := DijkstraShortestPathTree(graph, "1", func(a, b string) float64 { return graph[a][b].(float64) })
+	graphset := map[string]map[string]struct{}{
+		"1": {"2": zzz, "3": zzz, "6": zzz},
+		"2": {"3": zzz, "4": zzz},
+		"3": {"4": zzz, "6": zzz},
+		"4": {"5": zzz},
+		"5": {},
+		"6": {"5": zzz},
+	}
+	// trick we are using the graph edge value to store a float: the wieght
+
+	dists, preds := DijkstraShortestPathTree(graphset, "1", func(a, b string) float64 { return graph[a][b] })
 
 	xdists := map[string]float64{
 		"1": 0.0,
@@ -51,7 +61,7 @@ func TestDijkstraShortestPathTree(t *testing.T) {
 
 func ExampleDijkstraShortestPathTree() {
 	// according to wikipedia: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
-	graph := map[string]map[string]interface{}{
+	weights := map[string]map[string]float64{
 		"1": {"2": 7.0, "3": 9.0, "6": 14.0},
 		"2": {"3": 10.0, "4": 15.0},
 		"3": {"4": 11.0, "6": 2.0},
@@ -60,8 +70,17 @@ func ExampleDijkstraShortestPathTree() {
 		"6": {"5": 9.0},
 	}
 
+	graph := map[string]map[string]struct{}{
+		"1": {"2": zzz, "3": zzz, "6": zzz},
+		"2": {"3": zzz, "4": zzz},
+		"3": {"4": zzz, "6": zzz},
+		"4": {"5": zzz},
+		"5": {},
+		"6": {"5": zzz},
+	}
+
 	// trick we are using the graph edge value to store a float: the weight
-	weight := func(a, b string) float64 { return graph[a][b].(float64) }
+	weight := func(a, b string) float64 { return weights[a][b] }
 
 	_, preds := DijkstraShortestPathTree(graph, "1", weight)
 	path := Path(preds, "5")

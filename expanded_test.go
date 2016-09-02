@@ -6,12 +6,12 @@ import (
 )
 
 func TestExpand(t *testing.T) {
-	g := map[string]map[string]interface{}{
-		"5":  {"11": nil},
-		"7":  {"11": nil, "8": nil},
-		"3":  {"8": nil, "10": nil},
-		"11": {"2": nil, "9": nil, "10": nil},
-		"8":  {"9": nil},
+	g := map[string]map[string]struct{}{
+		"5":  {"11": zzz},
+		"7":  {"11": zzz, "8": zzz},
+		"3":  {"8": zzz, "10": zzz},
+		"11": {"2": zzz, "9": zzz, "10": zzz},
+		"8":  {"9": zzz},
 	}
 	// once layered and expanded, it has to create a node between 3 and 10
 	i := 0
@@ -20,13 +20,13 @@ func TestExpand(t *testing.T) {
 		return fmt.Sprintf("i%v", i)
 	})
 
-	x := map[string]map[string]interface{}{
-		"5":  {"11": nil},
-		"7":  {"11": nil, "8": nil},
-		"3":  {"8": nil, "i1": nil},
-		"11": {"2": nil, "9": nil, "10": nil},
-		"8":  {"9": nil},
-		"i1": {"10": nil},
+	x := map[string]map[string]struct{}{
+		"5":  {"11": zzz},
+		"7":  {"11": zzz, "8": zzz},
+		"3":  {"8": zzz, "i1": zzz},
+		"11": {"2": zzz, "9": zzz, "10": zzz},
+		"8":  {"9": zzz},
+		"i1": {"10": zzz},
 	}
 
 	if !Equals(expanded, x) {

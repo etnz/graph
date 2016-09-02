@@ -3,15 +3,15 @@ package graph
 //Equals returns true iif g1 and g2 are identical, (same edges, and same vertices)
 //
 // It does not recognize graphs that could be equivalent.
-func Equals(g1, g2 map[string]map[string]interface{}) bool {
+func Equals(g1, g2 map[string]map[string]struct{}) bool {
 
 	//build the union of all keys, to be able to compare them
-	all := make(map[string]interface{})
+	all := make(map[string]struct{})
 	for k := range g1 {
-		all[k] = nil
+		all[k] = zzz
 	}
 	for k := range g2 {
-		all[k] = nil
+		all[k] = zzz
 	}
 	//all now contains all keys, use them to compare
 	for k := range all {

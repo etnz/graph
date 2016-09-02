@@ -4,9 +4,9 @@ import "testing"
 
 func TestClone(t *testing.T) {
 
-	g1 := map[string]map[string]interface{}{
-		"a": {"b": nil, "c": nil},
-		"b": {"a": nil, "c": nil},
+	g1 := map[string]map[string]struct{}{
+		"a": {"b": zzz, "c": zzz},
+		"b": {"a": zzz, "c": zzz},
 	}
 
 	g2 := Clone(g1)

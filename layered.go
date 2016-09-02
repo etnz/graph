@@ -7,7 +7,7 @@ import "github.com/etnz/stringset"
 //
 // If we call L the function that associate a vertex 'u' to the index of the layer it belongs to: L(u) > L(v)
 //
-func Layer(graph map[string]map[string]interface{}) (layers []map[string]interface{}) {
+func Layer(graph map[string]map[string]struct{}) (layers []map[string]struct{}) {
 
 	// the idea is to find the tails "only" elements and put them into a first layer
 	// and to repeat it
@@ -40,7 +40,7 @@ func Layer(graph map[string]map[string]interface{}) (layers []map[string]interfa
 }
 
 //explicit the graph: every vertex at the tail of an edge, is also in the map
-func explicit(graph map[string]map[string]interface{}) (g map[string]map[string]interface{}) {
+func explicit(graph map[string]map[string]struct{}) (g map[string]map[string]struct{}) {
 	for v := range Tails(graph) {
 		if _, exists := graph[v]; !exists {
 			//this is an implicity defined node, make it explicit
@@ -53,11 +53,11 @@ func explicit(graph map[string]map[string]interface{}) (g map[string]map[string]
 //leaves return all the leave vertices
 //
 // the graph must NOT define vertices implicitely i.e node referenced but never defined
-func leaves(graph map[string]map[string]interface{}) (leaves map[string]interface{}) {
-	leaves = make(map[string]interface{})
+func leaves(graph map[string]map[string]struct{}) (leaves map[string]struct{}) {
+	leaves = make(map[string]struct{})
 	for t, target := range graph {
 		if len(target) == 0 { //this is a leaf
-			leaves[t] = nil //append it
+			leaves[t] = zzz //append it
 		}
 	}
 	return

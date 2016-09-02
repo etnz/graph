@@ -8,7 +8,7 @@ import (
 )
 
 // String returns a dot-formatter representation of this graph. It does not print the graph definition (`graph name {}`) but just the content
-func String(g map[string]map[string]interface{}) string {
+func String(g map[string]map[string]struct{}) string {
 
 	var buf bytes.Buffer
 

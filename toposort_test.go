@@ -8,12 +8,12 @@ import (
 
 func TestToposort(t *testing.T) {
 
-	g := map[string]map[string]interface{}{
-		"5":  {"11": nil},
-		"7":  {"11": nil, "8": nil},
-		"3":  {"8": nil, "10": nil},
-		"11": {"2": nil, "9": nil, "10": nil},
-		"8":  {"9": nil},
+	g := map[string]map[string]struct{}{
+		"5":  {"11": zzz},
+		"7":  {"11": zzz, "8": zzz},
+		"3":  {"8": zzz, "10": zzz},
+		"11": {"2": zzz, "9": zzz, "10": zzz},
+		"8":  {"9": zzz},
 	}
 	tsort, err := Toposort(g)
 	if err != nil {
@@ -28,12 +28,12 @@ func TestToposort(t *testing.T) {
 
 func ExampleToposort() {
 	//for a given graph
-	g := map[string]map[string]interface{}{
-		"5":  {"11": nil},
-		"7":  {"11": nil, "8": nil},
-		"3":  {"8": nil, "10": nil},
-		"11": {"2": nil, "9": nil, "10": nil},
-		"8":  {"9": nil},
+	g := map[string]map[string]struct{}{
+		"5":  {"11": zzz},
+		"7":  {"11": zzz, "8": zzz},
+		"3":  {"8": zzz, "10": zzz},
+		"11": {"2": zzz, "9": zzz, "10": zzz},
+		"8":  {"9": zzz},
 	}
 	sorted, _ := Toposort(g)
 	//vertices in topological order

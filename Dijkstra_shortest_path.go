@@ -24,7 +24,7 @@ func IsoWeight(vertex1, vertex2 string) float64 { return 1.0 }
 // This is the easier way to build a shortest path from 'start'.
 //
 // if 'weight' function is nil, then the IsoWeight function is used instead.
-func DijkstraShortestPathTree(g map[string]map[string]interface{}, start string, weight func(v1, v2 string) float64) (distances map[string]float64, predecessors map[string]string) {
+func DijkstraShortestPathTree(g map[string]map[string]struct{}, start string, weight func(v1, v2 string) float64) (distances map[string]float64, predecessors map[string]string) {
 
 	if weight == nil {
 		weight = IsoWeight

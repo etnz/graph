@@ -2,7 +2,7 @@
 //
 // A graph is usually defined through it's simplest basic type:
 //
-//    map[string]map[string]interface{}
+//    map[string]map[string]struct{}
 //
 // Which is basically a map from a vertex to a set of vertices,representing edges.
 //
@@ -10,6 +10,8 @@
 package graph
 
 import "github.com/etnz/stringset"
+
+var zzz = struct{}{}
 
 /*
 # Design
@@ -28,10 +30,10 @@ so far we built:
 */
 
 //Vertices return all the vertices of this graph
-func Vertices(g map[string]map[string]interface{}) (vertices map[string]interface{}) {
-	vertices = make(map[string]interface{})
+func Vertices(g map[string]map[string]struct{}) (vertices map[string]struct{}) {
+	vertices = make(map[string]struct{})
 	for k, targets := range g {
-		vertices[k] = nil
+		vertices[k] = zzz
 		stringset.Append(vertices, targets)
 	}
 	return

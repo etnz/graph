@@ -6,14 +6,14 @@ import "github.com/etnz/stringset"
 //
 // it's an error, but it is also a graph, of the remaining "headless" subgraph.
 //
-type CyclicGraphError map[string]map[string]interface{}
+type CyclicGraphError map[string]map[string]struct{}
 
 func (e CyclicGraphError) Error() string { return String(e) }
 
 //Toposort computes the Toposort for a graph
 //
 // A toposort of a graph is a linear ordering of its vertices such that for every edge from vertex 'u' to vertex 'v', 'u' comes before 'v' in the ordering.
-func Toposort(graph map[string]map[string]interface{}) (tsort []string, err error) {
+func Toposort(graph map[string]map[string]struct{}) (tsort []string, err error) {
 
 	// get all vertices from the graph
 	g := Clone(graph) // clone the graph to destroy it

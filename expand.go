@@ -9,7 +9,7 @@ import "github.com/etnz/stringset"
 //
 // If an edge (uv) "crosses" layers L(u)>1+L(v) then the function 'vertexgen' is called to generate a new vertex 'w' so that
 // and (uv) is replaced by (uw) and (w,v), by construction now, L(u)=1+L(w).
-func Expand(graph map[string]map[string]interface{}, vertexgen func() string) (expanded map[string]map[string]interface{}) {
+func Expand(graph map[string]map[string]struct{}, vertexgen func() string) (expanded map[string]map[string]struct{}) {
 	//alg:
 	// compute the current layers
 	// then for each vertex in the top layer, create if needed a vertex in the layer below.
@@ -32,11 +32,11 @@ func Expand(graph map[string]map[string]interface{}, vertexgen func() string) (e
 					// and replacing it by ivertex
 					// then creating anew edge from ivertex to tail
 					delete(expanded[vertex], tail)  //remove tail from tails of vertex
-					expanded[vertex][ivertex] = nil // replace by an edge to ivertex
+					expanded[vertex][ivertex] = zzz // replace by an edge to ivertex
 					//and now create the new ivertex, and its edge
 					expanded[ivertex] = stringset.New(tail)
 					// as we want to check ivertex in the next layer, we need to append it:
-					layers[i-1][ivertex] = nil // also append inode, the lower layer
+					layers[i-1][ivertex] = zzz // also append inode, the lower layer
 
 				}
 			}
